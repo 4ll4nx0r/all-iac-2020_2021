@@ -67,8 +67,8 @@ atualizajogo:
 ; os valores na posicao imediatamente acima passa para a posicao imediatamente
 ; inferior 
 
-; tenho de comentar melhor o codigo 
+; tenho de melhor comentar o codigo 
 ; chamar a funcao para a ultima posicao
-
+; TEST
 
 ;------------------------------------------------------------------------------
