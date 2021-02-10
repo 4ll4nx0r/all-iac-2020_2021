@@ -1,5 +1,5 @@
 
-; zona I, constantes
+;constantes
 
 ; I/O terminal
 TERM_READ       EQU     FFFFh                ;endereco do porto de leitura   <-- read only
