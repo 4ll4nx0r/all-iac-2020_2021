@@ -75,16 +75,6 @@ escreve_terminal:
 
 .retorna:       JMP     R7
 
-
-
-
-
-
-
-
-
-
-
 main:           
                 MVI     R6,STACKBASE
                 MVI     R1,GameOver
