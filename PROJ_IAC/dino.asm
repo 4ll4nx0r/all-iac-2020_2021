@@ -441,8 +441,8 @@ ATUALIZAJOGO:                           ; R1 = 1 POSICAO DO TERRENO E R2 = DIMEN
                 DEC     R6
                 STOR    M[R6], R2
                 MVI     R1, ALTURA_MAX   ;
-                JAL     geracacto        ; CHAMA A FUNCAO GERACACTO PARA GERAR
-                LOAD    R2, M[R6]        ; UM NUMERO PSEUDO ALEATORIA
+                JAL     geracacto        ; chama a funcao GERACACTO para gerar
+                LOAD    R2, M[R6]        ; um numero pseudo aleatorio 
                 INC     R6
                 LOAD    R1, M[R6]
                 INC     R6
@@ -462,8 +462,8 @@ ESCREVE_CACTO:  DEC     R6
                 STOR    M[R6], R7
                 
                 MOV     R2, R1
-                MVIH    R2, 16h           ; POSICIONA O R2 NA PRIMEIRA LINHA
-                LOAD    R1, M[R1]         ; DO TERRENO
+                MVIH    R2, 16h           ; posiciona o R2 na primeira linha 
+                LOAD    R1, M[R1]         ; do terreno 
                 MVI     R4, TERM_CURSOR
                 MVI     R5, TERM_WRITE
                 
@@ -471,20 +471,20 @@ ESCREVE_CACTO:  DEC     R6
                 BR.Z    .fim
                 
                 ;CHECK COLISIONS
-                MVI     R3, POS_DINO       ; VERIFICA SO SE HA COLISOES NA
+                MVI     R3, POS_DINO       ; verifica se ha colicoes na 
                 LOAD    R3, M[R3]
-                CMP     R2, R3             ; POSICAO DO DINO
+                CMP     R2, R3             ; posicao do dino  
                 BR.Z    .checkcolisions
                 
-.cont:          STOR    M[R4], R2          ; ESCREVE O CARACTER '|' NAS POSICOES
-                MVI     R3, 179            ; DOS CACTOS
+.cont:          STOR    M[R4], R2          ; escreve o caracter'|' nas posicoes
+                MVI     R3, 179            ; dos cactos 
                 STOR    M[R5], R3          ;
                 
                 MVI     R3, 0001h
                 ADD     R2, R2, R3         ;
-                STOR    M[R4], R2          ; ESCREVE O CARACTER ' ' NA POSICAO
-                MVI     R3, ' '            ; IMEDIATAMENTE ATRAS DO CACTO 
-                STOR    M[R5], R3          ; APAGANDO O QUE LA ESTAVA ANTES
+                STOR    M[R4], R2          ; escreve o caracter ' ' na posicao 
+                MVI     R3, ' '            ; imediatamente atras do cacto  
+                STOR    M[R5], R3          ; apagando o que la estava antes 
                 MVI     R3, 0001h
                 SUB     R2, R2, R3
                 
@@ -510,8 +510,8 @@ ESCREVE_CACTO:  DEC     R6
                 DEC     R6
                 STOR    M[R6], R2
                 
-                MVI     R1, TERRENO     ; COLOCA R1 NA COLUNA ONDE O DINO ESTA
-                INC     R1              ; DESENHADO
+                MVI     R1, TERRENO     ;coloca R1 na colina onde o dino esta 
+                INC     R1              ;desenhado 
                 INC     R1
                 INC     R1
                 INC     R1
@@ -521,11 +521,11 @@ ESCREVE_CACTO:  DEC     R6
 .loop2:         CMP     R1, R0
                 BR.Z    .end
 
-                MVI     R3, POS_DINO  ; 
-                LOAD    R3, M[R3]     ; VERIFICA SE A PARTE MAIS BAIXA DO DINO
-                CMP     R3, R2        ; ESTA DE BAIXO DA LINHA MAIS ALTA DO
-                JMP.NN   GAMEOVER     ; CACTO (COMO AS LINHAS MAIS ACIMA SAO 
-                                      ; MENORES VERIFICA SE SE E NAO NEGATIVO)
+                MVI     R3, POS_DINO  ; verifica se a parte mais do dino
+                LOAD    R3, M[R3]     ; esta por baixo da linha mais alta
+                CMP     R3, R2        ; do cacto (como as linhas mais acima sao
+                JMP.NN   GAMEOVER     ; menores verifica-se se e nao negativo)
+                                      
                 MVI     R3, 0100h
                 SUB     R2, R2, R3
                 DEC     R1
@@ -551,15 +551,15 @@ ESCREVE_DINO:   DEC     R6
                 DEC     R6
                 STOR    M[R6],R5
                 
-                MVI     R1, SALTO       ; VERIFICA SE A VARIAVEL SALTO E 1
-                LOAD    R1, M[R1]       ; SE FOR INICIA A ROTINA DE SALTO
+                MVI     R1, SALTO       ; verifica se a variavel salto e 1 
+                LOAD    R1, M[R1]       ; caso sim, inicia a rotina de salto  
                 CMP     R1, R0          ;
                 BR.NZ   .salto          ; 
 
-.cont:          MVI     R1, POS_DINO    ; ESCREVE UM CARACTER DO DINO NUMA LINHA
-                                        ; E DEPOIS ESCREVE NA LINHA A CIMA OUTRO
-                LOAD    R1,M[R1]        ; ATE ESCREVER TODOS OS CARACTERES DO       
-                MVI     R2, 0100h       ; DINO, COMECANDO NA POS_DINO
+.cont:          MVI     R1, POS_DINO    ; escreve um carater do dino numa linha  
+                                        ; e depois escreve na linha acima outro  
+                LOAD    R1,M[R1]        ; ate escrever todos os caracteres do dino    
+                MVI     R2, 0100h       ; ,comecando na POS_DINO
                 MVI     R4,TERM_WRITE
                 MVI     R5,TERM_CURSOR   
                 MVI     R3,'('
@@ -582,7 +582,7 @@ ESCREVE_DINO:   DEC     R6
                 MVI     R3, ' '
                 STOR    M[R4], R3
                 
-                ; RECOVER CONTENXT
+                ; RECOVER CONTEXT
                 LOAD    R5, M[R6]
                 INC     R6
                 LOAD    R4, M[R6]
@@ -592,31 +592,31 @@ ESCREVE_DINO:   DEC     R6
                 
                 JMP     R7
 
-.salto:         MVI     R1, HOLD_VAR      ; USAMOS HOLD_VAR COMO COUNTER
-                LOAD    R4, M[R1]         ; E REPETIMOS O LOOP UMA VEZES MAIS
-                MVI     R5, ALTURA_MAX    ; DO QUE A ALTURA MAXIMA DOS CACTOS
-                INC     R5                ; DE MODO A QUE A PARTE INFERIOR DO 
-                CMP     R4, R5            ; DINO FIQUE UMA LINHA ACIMA DA LINHA
-                BR.Z    .desce            ; MAIS ALTA DO CACTO, QUANDO ATINGE A
-                                          ; ALTURA MAXIMA COMECA A DESCER
+.salto:         MVI     R1, HOLD_VAR      ; usamos HOLD_VAR como counter 
+                LOAD    R4, M[R1]         ; e repetimos o loop uma vez mais  
+                MVI     R5, ALTURA_MAX    ; do que a altura maxima dos cactos
+                INC     R5                ; de modo a que a parte inferior do  
+                CMP     R4, R5            ; dino fique uma linha acima da linha  
+                BR.Z    .desce            ; mais alta do cacto, quando atinge a 
+                                          ; altura maxima comeca a descer
                                           
                 MVI     R1, POS_DINO      ;
-                MVI     R2, ' '           ; ESCREVE UMA ESPACO EM BRANCO NA 
-                MVI     R4, TERM_CURSOR   ; LINHA MAIS BAIXA DO DINO DE MODO
-                MVI     R5, TERM_WRITE    ; A APAGAR OS CARACTERES QUE LA 
-                LOAD    R3, M[R1]         ; ESTAVAM ESCRITOS
+                MVI     R2, ' '           ; escreve um espaco em branco na  
+                MVI     R4, TERM_CURSOR   ; linha mais baixa do dino de modo 
+                MVI     R5, TERM_WRITE    ; a apagar os caracteres que la  
+                LOAD    R3, M[R1]         ; estavam escritos  
                 
                 STOR    M[R4], R3
                 STOR    M[R5], R2
                 
                 MVI     R2, 0100h         ;
-                LOAD    R3, M[R1]         ; AUMENTA A POSICAO DINO EM UMA LINHA
-                SUB     R3, R3, R2        ; E DEPOIS ESCREVE O DINO NORMALMENTE
+                LOAD    R3, M[R1]         ; aumenta a posicao do dino em uma linha
+                SUB     R3, R3, R2        ; e depois escreve o dino normalmente 
                 STOR    M[R1], R3         ;
                 
                 MVI     R1, HOLD_VAR
-                MVI     R2, HOLD_VAR_2    ; USAMOS A VARIAVEL HOLD_VAR_2 COMO
-                LOAD    R4, M[R1]         ; COUNTER DA ROTINA DESCE
+                MVI     R2, HOLD_VAR_2    ; usamos a variavel HOLD_VAR_2 como 
+                LOAD    R4, M[R1]         ; counter da rotina desce 
                 INC     R4
                 STOR    M[R1], R4
                 STOR    M[R2], R4
@@ -629,8 +629,8 @@ ESCREVE_DINO:   DEC     R6
                 
 
                 MVI     R1, POS_DINO         ;
-                MVI     R2, 0100h            ; RETIRAMOS UMA LINHA A POS_DINO
-                LOAD    R3, M[R1]            ; ESCREVEMOS O DINO NORMALMENTE
+                MVI     R2, 0100h            ; retiramos uma linhha a POS_DINO
+                LOAD    R3, M[R1]            ; escrevemos o dino normalmente 
                 ADD     R3, R3, R2           ;
                 STOR    M[R1], R3
                 
@@ -810,8 +810,8 @@ FIM:            NOP
                 STOR    M[R1], R2
                 ENI
 .loop:          MVI     R1, RESTART ;
-                LOAD    R2, M[R1]   ; SALTA PARA O INICIO DO CODIGO SE O VALOR
-                CMP     R2, R0      ; DA VARIAVEL RESTART FOR DIFERENTE DE 0
+                LOAD    R2, M[R1]   ; salta para o inicio do codigo se o valor 
+                CMP     R2, R0      ; da variavel RESTART for diferente de 0
                 JMP.NZ  INICIO      ; 
                 BR      .loop       ; 
 
