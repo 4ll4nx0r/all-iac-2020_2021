@@ -1,5 +1,5 @@
 
-; zona I, constantes
+;constantes
 
 ; I/O terminal
 TERM_READ       EQU     FFFFh                ;endereco do porto de leitura   <-- read only
@@ -44,7 +44,7 @@ desenha_dino:
                 STOR    M[R6],R4
                 DEC     R6
                 STOR    M[R6],R5
-                LOAD    R1,M[R1]             ;coloca em R1 a posicao para desenhar a perna do dino
+                LOAD    R1,M[R1]                 ;coloca em R1 a posicao para desenhar a perna do dino
                 MVI     R4,TERM_WRITE
                 MVI     R5,TERM_CURSOR
                 MVI     R3,'('
@@ -62,7 +62,7 @@ desenha_dino:
                 MVI     R2,0100h
                 MOV     R3,R1
                 SUB     R2,R3,R2
-                STOR    M[R1],R2                ;posicao dino 
+                STOR    M[R1],R2                 ;posicao dino 
                 STOR    M[R5],R2
                 MVI     R2,'^'
                 STOR    M[R4],R2
@@ -70,3 +70,4 @@ desenha_dino:
                 JMP     R7
                 
                 
+               
