@@ -1,3 +1,6 @@
+; Allan Cravid Fernandes 
+; date - 14-10-2020
+
 ;Escreva um programa que modificando apenas R1 e R2
 ;calcula R1 = 4 x (R1 + 2) + 2 x (R2 - 1) + X, em que X é uma constantes
 ;Deve também escrever o código que define a constante X.
