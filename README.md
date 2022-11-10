@@ -1,6 +1,4 @@
-## IAC20-21
-
-Introduction To Computer Architecture 
+# Introduction To Computer Architecture 
 
 Contains labs(homework) and ultimately the main project file.
 For more information refer to the READMEs in each main folder.
